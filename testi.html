@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta link rel="stylesheet"
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      color: #a82a2a;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 50px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .door {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .door.locked {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+    .door.opened {
+      background-color: #e6ffe6;
+      cursor: default;
+    }
+    .door.current-day {
+      border: 2px solid #ffcc00;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const today = new Date().getDate();
+      const calendarDoors = document.querySelectorAll('.door');
+
+      calendarDoors.forEach((door, index) => {
+        if (index + 1 < today) {
+          door.classList.add('locked');
+        } else if (index + 1 === today) {
+          door.classList.add('current-day');
+        }
+
+        door.addEventListener('click', () => {
+          if (door.classList.contains('locked')) {
+            alert('Tätä luukkua ei voi vielä avata.');
+          } else if (door.classList.contains('opened')) {
+            alert('Tämä luukku on jo avattu.');
+          } else if (door.classList.contains('current-day')) {
+            alert('Onneksi olkoon! Avattu luukku ' + (index + 1));
+            door.classList.remove('current-day');
+            door.classList.add('opened');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Joulukalenteri</h1>
+  <div class="calendar">
+    <div class="door">1</div>
+    <div class="door">2</div>
+    <div class="door">3</div>
+    <div class="door">4</div>
+    <div class="door">5</div>
+    <div class="door">6</div>
+    <div class="door">7</div>
+    <div class="door">8</div>
+    <div class="door">9</div>
+    <div class="door">10</div>
+    <div class="door">11</div>
+    <div class="door">12</div>
+    <div class="door">13</div>
+    <div class="door">14</div>
+    <div class="door">15</div>
+    <div class="door">16</div>
+    <div class="door">17</div>
+    <div class="door">18</div>
+    <div class="door">19</div>
+    <div class="door">20</div>
+    <div class="door">21</div>
+    <div class="door">22</div>
+    <div class="door">23</div>
+    <!-- ...lisää tarvittava määrä luukkuja... -->
+    <div class="door">24</div>
+  </div>
+</body>
+</html>
